@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>java-sample</artifactId>
+        <groupId>com.example</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>shiro-example</artifactId>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <!-- mvn test插件版本 -->
+        <plugin.surefire.version>2.20.1</plugin.surefire.version>
+        <!-- 编译插件的版本(maven-compiler-plugin) -->
+        <plugin.compiler.version>3.6.1</plugin.compiler.version>
+        <!-- springboot打包插件的版本(spring-boot-maven-plugin) -->
+        <plugin.spring.boot.version>2.3.1.RELEASE</plugin.spring.boot.version>
+        <!--mvn install/deploy 插件,用户替换版本定义中的revision-->
+        <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
+        <!-- springboot打包插件的版本(spring-boot-maven-plugin) -->
+        <plugin.spring.boot.version>2.3.1.RELEASE</plugin.spring.boot.version>
+        <!-- jdk编译版本 -->
+        <project.build.version>1.8</project.build.version>
+        <!-- 字符编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--spring-boot版本-->
+        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+        <!--spring.cloud.glodon版本-->
+        <spring.cloud.glodon.version>2.3.1.RELEASE</spring.cloud.glodon.version>
+        <!-- mybatis-spring-boot-starter版本 -->
+        <mybatis.spring.boot.starter.version>2.1.2</mybatis.spring.boot.starter.version>
+        <!-- druid-spring-boot-starter版本 -->
+        <druid.spring.boot.starter.version>1.1.14</druid.spring.boot.starter.version>
+        <!-- druid版本 -->
+        <druid.version>1.1.0</druid.version>
+    </properties>
+
+    <dependencies>
+        <!--springboot thymeleaf 前端页面开发依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!--springboot web 开发依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--springboot 热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <!--springboot 测试用例-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--lombok 依赖-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
+        <!-- FreeMarker 模板引擎，用于生成邮件内容 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <!-- 邮件发送的依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <!-- mybatis-spring-boot-starter -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.spring.boot.starter.version}</version>
+        </dependency>
+        <!-- druid-spring-boot-starter -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.spring.boot.starter.version}</version>
+        </dependency>
+        <!-- jdbc数据源 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <!-- mysql驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.46</version>
+        </dependency>
+        <!-- shiro -->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.shiro</groupId>-->
+<!--            <artifactId>shiro-spring-boot-web-starter</artifactId>-->
+<!--            <version>1.5.3</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--springboot dependencies-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!--maven编译插件maven-compiler-plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${plugin.compiler.version}</version>
+                <configuration>
+                    <!-- 编译版本 -->
+                    <source>${project.build.version}</source>
+                    <target>${project.build.version}</target>
+                    <!-- 编码方式 -->
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!--maven测试用例插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${plugin.surefire.version}</version>
+            </plugin>
+            <!--springboot打包插件-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${plugin.spring.boot.version}</version>
+                <configuration>
+                    <!-- 工程主入口-->
+                    <mainClass>com.example.shiroexample.TaikeystoneApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
