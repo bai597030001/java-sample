@@ -18,9 +18,9 @@ spring:
     # aliyun smtp.aliyun.com
     # 163 smtp.163.com
     host: smtp.qq.com
-    username: 597030001@qq.com
+    username: xxxxxx@qq.com
     # #qq授权码，而非密码
-    password: tofsklcuupzebaij
+    password: xxxxxx
     default-encoding: utf-8
     protocol: smtp
     properties:
@@ -31,6 +31,9 @@ spring:
         starttls:
           enable: true
           required: true
+        socketFactory:
+          class: 'javax.net.ssl.SSLSocketFactory'
+          port: 465
   freemarker:
     enabled: true
     cache: true
@@ -51,7 +54,7 @@ spring:
     url: jdbc:mysql://localhost:3306/shiro?serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: gsmrlab
+    password: xxxxxx
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5

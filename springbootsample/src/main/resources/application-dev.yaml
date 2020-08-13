@@ -1,0 +1,79 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  mail:
+    # 邮箱服务器地址
+    # QQ smtp.qq.com
+    # sina smtp.sina.cn
+    # aliyun smtp.aliyun.com
+    # 163 smtp.163.com
+    host: smtp.qq.com
+    username: 597030001@qq.com
+    # #qq授权码，而非密码
+    password: tofsklcuupzebaij
+    default-encoding: utf-8
+    protocol: smtp
+    properties:
+      # 设置是否需要认证，如果为true,那么用户名和密码就必须的
+      mail.smtp:
+        auth: true
+        # # 是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信。
+        starttls:
+          enable: true
+          required: true
+        socketFactory:
+          class: 'javax.net.ssl.SSLSocketFactory'
+          port: 465
+  freemarker:
+    enabled: true
+    cache: true
+    content-type: text/html
+    charset: UTF-8
+    check-template-location: true
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    prefer-file-system-access: true
+    allow-request-override: false
+    allow-session-override: false
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+
+  #数据源配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/shiro?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: gsmrlab
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 50
+      validation-query: SELECT 1
+
+#mybatis配置
+mybatis:
+  type-aliases-package: com.glodon.com.example.shiroexample.model
+
+# 日志配置
+logging:
+  level:
+    com.glodon.taikeystone: debug
+shiro:
+  enabled: true
+  web:
+    enabled: true
+  loginUrl: /register
+  successUrl: /index
+  unauthorizedUrl: /error
