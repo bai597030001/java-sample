@@ -1,5 +1,9 @@
 package com.example.designmode.decorator;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+
 /**
  * @program: java-sample
  * @description: main
@@ -15,5 +19,8 @@ public class Main {
 
         Component dec = new ConcreteDecoratorB(new ConcreteDecoratorA(new ConcreteComponent()));
         dec.sampleOperation();
+
+        String s = "hello, world";
+        new DataInputStream(new BufferedInputStream(new ByteArrayInputStream(s.getBytes())))
     }
 }
